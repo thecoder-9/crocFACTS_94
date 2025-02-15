@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .fact-display {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            overflow-wrap: break-word;
+        }
+
+        .fact-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .fact-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="factDisplay" class="fact-display">Click the button to get a fact about crocodiles!</div>
+    <button id="factButton" class="fact-button">Get a Fact</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const facts = [
+                {"id": 1, "fact": "Crocodiles are ancient reptiles that have been around for over 200 million years, even outliving the dinosaurs."},
+                {"id": 2, "fact": "The saltwater crocodile is the largest living reptile in the world, with some males reaching over 20 feet in length."},
+                {"id": 3, "fact": "Crocodiles have the strongest bite of any animal in the world, thanks to their powerful jaw muscles."},
+                {"id": 4, "fact": "Unlike other reptiles, crocodiles have a four-chambered heart, similar to birds and mammals, which makes them more efficient predators."},
+                {"id": 5, "fact": "Crocodiles can hold their breath underwater for up to an hour, allowing them to ambush prey from beneath the water's surface."},
+                {"id": 6, "fact": "Their skin is so tough and durable that it is often used to make leather goods like shoes, belts, and handbags."},
+                {"id": 7, "fact": "Crocodiles have excellent night vision, which helps them to hunt in the dark."},
+                {"id": 8, "fact": "Baby crocodiles can make chirping noises from inside their eggs before they hatch to signal the mother that they are ready to come out."},
+                {"id": 9, "fact": "Crocodiles can replace each of their 80 teeth up to 50 times over their lifetime, which is why they are never toothless."},
+                {"id": 10, "fact": "Despite their slow appearance on land, crocodiles can reach speeds of up to 11 kilometers per hour (about 7 mph) in water."}
+            ];
+            const factButton = document.getElementById('factButton');
+            const factDisplay = document.getElementById('factDisplay');
+            let hoverAttempts = 0;
+
+            factButton.addEventListener('mouseover', function(event) {
+                if (hoverAttempts < 3) {
+                    const newX = Math.random() * (window.innerWidth - factButton.clientWidth);
+                    const newY = Math.random() * (window.innerHeight - factButton.clientHeight);
+                    factButton.style.transform = `translate(${newX}px, ${newY}px)`;
+                    hoverAttempts++;
+                }
+            });
+
+            factButton.addEventListener('click', function() {
+                const randomIndex = Math.floor(Math.random() * facts.length);
+                factDisplay.textContent = facts[randomIndex].fact;
+            });
+        });
+    </script>
+</body>
+</html>
